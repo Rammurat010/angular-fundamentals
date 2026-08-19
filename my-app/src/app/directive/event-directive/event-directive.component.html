@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>🎯 Event Directives</h2>
+
+  <!-- Message Display -->
+  <div class="msg">{{ msg }}</div>
+
+  <!-- 1. Click -->
+  <button (click)="handleClick()">Click: {{ count }}</button>
+
+  <!-- 2. Double Click -->
+  <button (dblclick)="handleDoubleClick()">Double Click</button>
+
+  <!-- 3. Hover -->
+  <div
+    class="box"
+    (mouseenter)="handleMouseEnter()"
+    (mouseleave)="handleMouseLeave()"
+    [style.color]="color"
+  >
+    Hover Me!
+  </div>
+
+  <!-- 4. Keyup -->
+  <input (keyup)="handleKeyUp($event)" placeholder="Type here..." />
+  <p>Typed: {{ text }}</p>
+
+  <!-- 5. Enter Key -->
+  <input (keyup.enter)="handleEnterKey()" placeholder="Press Enter..." />
+
+  <!-- 6. Focus/Blur -->
+  <input
+    (focus)="handleFocus()"
+    (blur)="handleBlur()"
+    placeholder="Focus/Blur..."
+  />
+
+  <!-- 7. Change -->
+  <select (change)="handleChange($event)">
+    <option value="">Select...</option>
+    <option value="Option A">Option A</option>
+    <option value="Option B">Option B</option>
+    <option value="Option C">Option C</option>
+  </select>
+
+  <!-- 8. Toggle -->
+  <button class="btn-toggle" (click)="toggleVisibility()">
+    {{ show ? "Hide" : "Show" }}
+  </button>
+
+  <div *ngIf="show" class="toggle-box">✅ Visible!</div>
+</div>

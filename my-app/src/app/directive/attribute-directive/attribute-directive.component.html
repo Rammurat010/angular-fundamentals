@@ -1,0 +1,107 @@
+<div class="container">
+  <h1>🔵 Attribute Directives</h1>
+
+  <!-- ======================================== -->
+  <!-- 1. ngClass  -->
+  <!-- ======================================== -->
+  <div class="section">
+    <h2>1. ngClass</h2>
+
+    <div [class.active]="isActive" class="box">
+      {{ isActive ? "✅ Active" : "❌ Inactive" }}
+    </div>
+
+    <button (click)="isActive = !isActive" class="btn">
+      Toggle ({{ isActive ? "ON" : "OFF" }})
+    </button>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- 2. ngStyle  -->
+  <!-- ======================================== -->
+  <div class="section">
+    <h2>2. ngStyle</h2>
+
+    <div
+      [ngStyle]="{
+        color: color,
+        'font-size': fontSize + 'px',
+      }"
+      class="box"
+    >
+      Color: {{ color }} | Size: {{ fontSize }}px
+    </div>
+
+    <div class="controls">
+      <label>Color:</label>
+      <select [(ngModel)]="color">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+      </select>
+
+      <label>Size:</label>
+      <input type="range" [(ngModel)]="fontSize" min="12" max="30" />
+      <span>{{ fontSize }}px</span>
+    </div>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- 3. Custom Directive - Highlight -->
+  <!-- ======================================== -->
+  <div class="section">
+    <h2>3. Highlight Directive</h2>
+
+    <div appHighlight class="box">Hover me - Background turns Yellow</div>
+
+    <div class="controls">
+      <label>Color:</label>
+      <input type="color" [(ngModel)]="highlightColor" />
+
+      <div [appHighlight]="highlightColor" class="box">
+        Hover me - Custom Color
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- 4. Custom Directive - Text Color -->
+  <!-- ======================================== -->
+  <div class="section">
+    <h2>4. Text Color Directive</h2>
+
+    <p appTextColor="red" class="box">Hover me - Red Text</p>
+
+    <p appTextColor="blue" class="box">Hover me - Blue Text</p>
+
+    <p [appTextColor]="textColor" class="box">Hover me - {{ textColor }}</p>
+
+    <div class="controls">
+      <label>Choose Color:</label>
+      <select [(ngModel)]="textColor">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="purple">Purple</option>
+        <option value="orange">Orange</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- 5. All Combined -->
+  <!-- ======================================== -->
+  <div class="section">
+    <h2>5. Combined Directives</h2>
+
+    <div
+      [class.active]="isActive"
+      [ngStyle]="{ 'font-size': fontSize + 'px' }"
+      appHighlight
+      appTextColor="darkblue"
+      class="box"
+    >
+      Hover me - All Directives Combined!
+    </div>
+  </div>
+</div>
