@@ -1,0 +1,145 @@
+<h1>Angular Event Binding</h1>
+
+<hr />
+
+<!-- 1. Click Event -->
+
+<h2>1. Click Event</h2>
+
+<button (click)="showMessage()">Click Me</button>
+
+<p>{{ message }}</p>
+
+<hr />
+
+<!-- 2. Input Event -->
+
+<h2>2. Input Event</h2>
+
+<input type="text" (input)="getName($event)" placeholder="Enter your name" />
+
+<p>Name: {{ name }}</p>
+
+<hr />
+
+<!-- 3. Change Event -->
+
+<h2>3. Change Event</h2>
+
+<select (change)="changeCity($event)">
+  <option value="">Select City</option>
+
+  <option value="Gorakhpur">Gorakhpur</option>
+
+  <option value="Lucknow">Lucknow</option>
+
+  <option value="Varanasi">Varanasi</option>
+</select>
+
+<p>Selected City: {{ city }}</p>
+
+<hr />
+
+<!-- 4. Keyup Event -->
+
+<h2>4. Keyup Event</h2>
+
+<input type="text" (keyup)="keyUp($event)" placeholder="Press any key" />
+
+<p>{{ keyUpMessage }}</p>
+
+<hr />
+
+<!-- 5. Keydown Event -->
+
+<h2>5. Keydown Event</h2>
+
+<input type="text" (keydown)="keyDown($event)" placeholder="Press any key" />
+
+<p>{{ keyDownMessage }}</p>
+
+<hr />
+
+<!-- 6. Mouseover Event -->
+
+<h2>6. Mouseover Event</h2>
+
+<div (mouseover)="mouseOver()" style="padding: 30px; border: 1px solid black">
+  Move Mouse Here
+</div>
+
+<p>{{ mouseOverMessage }}</p>
+
+<hr />
+
+<!-- 7. Mouseout Event -->
+
+<h2>7. Mouseout Event</h2>
+
+<div (mouseout)="mouseOut()" style="padding: 30px; border: 1px solid black">
+  Move Mouse Outside
+</div>
+
+<p>{{ mouseOutMessage }}</p>
+
+<hr />
+
+<!-- 8. Double Click Event -->
+
+<h2>8. Double Click Event</h2>
+
+<button (dblclick)="doubleClick()">Double Click Me</button>
+
+<p>{{ doubleClickMessage }}</p>
+
+<hr />
+
+<!-- 9. Form Submit Event -->
+
+<h2>9. Form Submit Event</h2>
+
+<form (submit)="submitForm()">
+  <input type="text" placeholder="Enter Name" />
+
+  <br /><br />
+
+  <button type="submit">Submit</button>
+</form>
+
+<p>{{ submitMessage }}</p>
+
+<hr />
+
+<!-- 10. Focus Event -->
+
+<h2>10. Focus Event</h2>
+
+<input type="text" (focus)="inputFocus()" placeholder="Click inside input" />
+
+<p>{{ focusMessage }}</p>
+
+<hr />
+
+<!-- 11. Blur Event -->
+
+<h2>11. Blur Event</h2>
+
+<input
+  type="text"
+  (blur)="inputBlur()"
+  placeholder="Click here and then outside"
+/>
+
+<p>{{ blurMessage }}</p>
+
+<hr />
+
+<!-- 12. Checkbox Change Event -->
+
+<h2>12. Checkbox Event</h2>
+
+<input type="checkbox" (change)="checkBoxChange($event)" />
+
+<label> Accept Terms </label>
+
+<p>Checked: {{ isChecked }}</p>

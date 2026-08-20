@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>📋 User List</h2>
+
+  <p *ngIf="users.length === 0">Loading...</p>
+
+  <table *ngIf="users.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>
+          <strong>{{ user.name }}</strong>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="badge">{{ user.role }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="total">
+    Total Users: <strong>{{ users.length }}</strong>
+  </p>
+</div>

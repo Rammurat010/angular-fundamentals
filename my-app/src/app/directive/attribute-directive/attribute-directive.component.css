@@ -1,0 +1,87 @@
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.section {
+  background: #f8f9fa;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border-left: 4px solid #1976d2;
+}
+
+.section h2 {
+  color: #1976d2;
+  margin-top: 0;
+}
+
+.box {
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  transition: all 0.3s;
+}
+
+.active {
+  background-color: #4caf50 !important;
+  color: white !important;
+  border-color: #4caf50 !important;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: #1565c0;
+}
+
+.controls {
+  margin: 15px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.controls label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.controls select,
+.controls input[type="color"] {
+  padding: 5px;
+  margin-right: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.controls input[type="range"] {
+  width: 150px;
+}
+
+.controls span {
+  font-weight: bold;
+  color: #1976d2;
+  margin-left: 5px;
+}

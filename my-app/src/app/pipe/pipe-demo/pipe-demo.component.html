@@ -1,0 +1,29 @@
+<div>
+  <h2>Angular Pipes Examples</h2>
+
+  <h3>Built-in Pipes</h3>
+  <p><strong>UpperCase:</strong> {{ "hello world" | uppercase }}</p>
+
+  <p><strong>LowerCase:</strong> {{ "HELLO WORLD" | lowercase }}</p>
+
+  <p><strong>TitleCase:</strong> {{ "angular pipes tutorial" | titlecase }}</p>
+
+  <p><strong>Date:</strong> {{ today | date: "dd/MM/yyyy" }}</p>
+
+  <p><strong>Currency:</strong> {{ amount | currency: "INR" }}</p>
+
+  <p><strong>Percent:</strong> {{ 0.25 | percent }}</p>
+
+  <p><strong>JSON:</strong> {{ user | json }}</p>
+
+  <p><strong>Slice:</strong> {{ "Angular" | slice: 0 : 3 }}</p>
+
+  <h3>Custom Pipe</h3>
+  <p><strong>My Custom Pipe:</strong> {{ "hello" | myPipe }}</p>
+
+  <h3>Pipe Chaining</h3>
+  <p>
+    <strong>Multiple Pipes:</strong>
+    {{ "angular is awesome" | titlecase | slice: 0 : 10 }}
+  </p>
+</div>
