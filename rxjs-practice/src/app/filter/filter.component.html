@@ -1,0 +1,11 @@
+<p>Filter works!</p>
+
+<button (click)="ShowData()">Show Even Numbers</button>
+
+<h3>Result:</h3>
+
+<ul>
+  @for (value of filterData; track value) {
+    <li>{{ value }}</li>
+  }
+</ul>

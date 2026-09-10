@@ -1,0 +1,11 @@
+<p>Map works!</p>
+
+<button (click)="ShowData()">Show Map Data</button>
+
+<h3>Map Result:</h3>
+
+<ul>
+  @for (value of mapData; track value) {
+    <li>{{ value }}</li>
+  }
+</ul>

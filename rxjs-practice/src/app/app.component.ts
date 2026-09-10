@@ -4,6 +4,11 @@ import { ObservableDemoComponent } from './observable-demo/observable-demo.compo
 import { ObservableOfComponent } from './observable-of/observable-of.component';
 import { ObservalbleFromComponent } from './observalble-from/observalble-from.component';
 import { FromEventComponent } from './from-event/from-event.component';
+import { IntervalComponent } from './interval/interval.component';
+import { TimerComponent } from './timer/timer.component';
+import { RangeComponent } from './range/range.component';
+import { MapComponent } from './map/map.component';
+import { FilterComponent } from './filter/filter.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +19,11 @@ import { FromEventComponent } from './from-event/from-event.component';
     ObservableOfComponent,
     ObservalbleFromComponent,
     FromEventComponent,
+    IntervalComponent,
+    TimerComponent,
+    RangeComponent,
+    MapComponent,
+    FilterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
