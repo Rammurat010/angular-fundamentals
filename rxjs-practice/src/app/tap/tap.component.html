@@ -1,0 +1,8 @@
+<p>tap works!</p>
+
+<button (click)="ShowData()">show observble data</button>
+<h1>observable data</h1>
+@for (item of ovservalData; track $index) {
+  {{ $index }}=>{{ item }}
+  <br />
+}

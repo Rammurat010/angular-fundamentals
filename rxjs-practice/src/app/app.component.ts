@@ -9,6 +9,12 @@ import { TimerComponent } from './timer/timer.component';
 import { RangeComponent } from './range/range.component';
 import { MapComponent } from './map/map.component';
 import { FilterComponent } from './filter/filter.component';
+import { TapComponent } from './tap/tap.component';
+import { RxjsDemoComponent } from './rxjs-demo/rxjs-demo.component';
+import { SwitchMapComponent } from './switch-map/switch-map.component';
+import { MergeMapComponent } from './merge-map/merge-map.component';
+import { ConcatMapComponent } from './concat-map/concat-map.component';
+import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +30,12 @@ import { FilterComponent } from './filter/filter.component';
     RangeComponent,
     MapComponent,
     FilterComponent,
+    TapComponent,
+    RxjsDemoComponent,
+    SwitchMapComponent,
+    MergeMapComponent,
+    ConcatMapComponent,
+    ExhaustMapComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
