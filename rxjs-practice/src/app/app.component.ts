@@ -15,6 +15,10 @@ import { SwitchMapComponent } from './switch-map/switch-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
+import { SubjectComponent } from './subject/subject.component';
+import { BehaviorSubjectComponent } from './behavior-subject/behavior-subject.component';
+import { ReplaySubjectComponent } from './replay-subject/replay-subject.component';
+import { AsyncSubjectComponent } from './async-subject/async-subject.component';
 
 @Component({
   selector: 'app-root',
@@ -36,6 +40,10 @@ import { ExhaustMapComponent } from './exhaust-map/exhaust-map.component';
     MergeMapComponent,
     ConcatMapComponent,
     ExhaustMapComponent,
+    SubjectComponent,
+    BehaviorSubjectComponent,
+    ReplaySubjectComponent,
+    AsyncSubjectComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
