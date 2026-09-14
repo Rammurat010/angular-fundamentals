@@ -1,0 +1,23 @@
+<h2>Products - finalize() Example</h2>
+
+<button (click)="getProducts()">Get Products</button>
+
+<hr />
+
+@if (loading) {
+  <h3>Loading...</h3>
+}
+
+@if (!loading) {
+  @for (product of products; track product.id) {
+    <div class="product">
+      <h3>{{ product.title }}</h3>
+
+      <p>ID: {{ product.id }}</p>
+
+      <p>Price: ${{ product.price }}</p>
+
+      <p>Category: {{ product.category }}</p>
+    </div>
+  }
+}

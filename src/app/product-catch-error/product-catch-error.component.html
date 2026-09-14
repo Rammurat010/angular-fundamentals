@@ -1,0 +1,23 @@
+<h2>Products - catchError()</h2>
+
+<button (click)="getProducts()">Get Products</button>
+
+<hr />
+
+@if (errorMessage) {
+  <p>
+    {{ errorMessage }}
+  </p>
+}
+
+@for (product of products; track product.id) {
+  <div>
+    <h3>{{ product.title }}</h3>
+
+    <p>ID: {{ product.id }}</p>
+
+    <p>Price: ${{ product.price }}</p>
+
+    <p>Category: {{ product.category }}</p>
+  </div>
+}

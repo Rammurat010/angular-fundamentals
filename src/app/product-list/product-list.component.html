@@ -1,0 +1,15 @@
+<h2>Products</h2>
+
+<button (click)="getProducts()">Get Products</button>
+
+@for (product of products; track product.id) {
+  <div>
+    <h3>{{ product.title }}</h3>
+
+    <p>Price: {{ product.price }}</p>
+
+    <p>Category: {{ product.category }}</p>
+
+    <hr />
+  </div>
+}
