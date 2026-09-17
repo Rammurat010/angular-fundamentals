@@ -1,0 +1,53 @@
+<h1>Posts</h1>
+
+@if (loading) {
+  <h3>Loading Posts...</h3>
+} @else {
+  <div class="post-grid">
+    @for (post of posts; track post.id) {
+      <div class="post-card">
+        <span class="post-id"> Post #{{ post.id }} </span>
+
+        <h2>
+          {{ post.title }}
+        </h2>
+
+        <p class="body">
+          {{ post.body }}
+        </p>
+
+        <!-- Tags -->
+
+        <div class="tags">
+          @for (tag of post.tags; track tag) {
+            <span> #{{ tag }} </span>
+          }
+        </div>
+
+        <!-- Reactions -->
+
+        <div class="reactions">
+          <span>
+            👍
+            {{ post.reactions.likes }}
+          </span>
+
+          <span>
+            👎
+            {{ post.reactions.dislikes }}
+          </span>
+
+          <span>
+            👁
+            {{ post.views }}
+          </span>
+        </div>
+
+        <div class="user-id">
+          User ID:
+          {{ post.userId }}
+        </div>
+      </div>
+    }
+  </div>
+}

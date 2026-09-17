@@ -1,0 +1,102 @@
+<h1>Products</h1>
+
+<!-- Loading -->
+
+@if (loading) {
+  <div class="loading">
+    <h3>Loading Products...</h3>
+  </div>
+}
+
+<!-- Products -->
+
+@else {
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+      <div class="product-card">
+        <!-- Image -->
+
+        <img [src]="product.thumbnail" [alt]="product.title" />
+
+        <!-- Title -->
+
+        <h3>
+          {{ product.title }}
+        </h3>
+
+        <!-- Description -->
+
+        <p class="description">
+          {{ product.description }}
+        </p>
+
+        <!-- Price -->
+
+        <strong class="price"> ${{ product.price }} </strong>
+
+        <!-- Category -->
+
+        <p>
+          <b>Category:</b>
+          {{ product.category }}
+        </p>
+
+        <!-- Rating -->
+
+        <p>
+          <b>Rating:</b>
+          ⭐ {{ product.rating }}
+        </p>
+
+        <!-- Stock -->
+
+        <p>
+          <b>Stock:</b>
+          {{ product.stock }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <!-- Pagination -->
+
+  <div class="pagination">
+    <!-- Previous -->
+
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+
+    <!-- Page Numbers -->
+
+    @for (page of [].constructor(totalPages); track $index) {
+      <button
+        (click)="changePage($index + 1)"
+        [class.active]="currentPage === $index + 1"
+      >
+        {{ $index + 1 }}
+      </button>
+    }
+
+    <!-- Next -->
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+
+  <!-- Page Information -->
+
+  <div class="page-info">
+    <span>
+      Page {{ currentPage }}
+      of
+      {{ totalPages }}
+    </span>
+
+    <span>
+      Total Products:
+      {{ totalProducts }}
+    </span>
+  </div>
+}

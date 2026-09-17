@@ -1,0 +1,36 @@
+.navbar {
+  height: 65px;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.logo {
+  color: white;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 12px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: #374151;
+}
+
+.menu a.active {
+  background: #2563eb;
+  color: white;
+}
