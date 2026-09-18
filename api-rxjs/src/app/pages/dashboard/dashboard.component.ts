@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { Subject, forkJoin, of } from 'rxjs';
+import { tap, catchError, finalize, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,63 +11,51 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   productCount = 0;
   userCount = 0;
   cartCount = 0;
   postCount = 0;
 
   loading = true;
-
+  private destroy$ = new Subject<void>();
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    // Products
-    this.apiService.getProducts().subscribe({
-      next: (response) => {
-        this.productCount = response.total;
-      },
-
-      error: (error) => {
-        console.log('Products API Error:', error);
-      },
-    });
-
-    // Users
-    this.apiService.getUsers().subscribe({
-      next: (response) => {
-        this.userCount = response.total;
-      },
-
-      error: (error) => {
-        console.log('Users API Error:', error);
-      },
-    });
-
-    // Carts
-    this.apiService.getCarts().subscribe({
-      next: (response) => {
-        this.cartCount = response.total;
-      },
-
-      error: (error) => {
-        console.log('Carts API Error:', error);
-      },
-    });
-
-    // Posts
-    this.apiService.getPosts().subscribe({
-      next: (response) => {
-        this.postCount = response.total;
-
-        this.loading = false;
-      },
-
-      error: (error) => {
-        console.log('Posts API Error:', error);
-
-        this.loading = false;
-      },
-    });
+    this.loading = true;
+    forkJoin({
+      products: this.apiService.getProducts(),
+      users: this.apiService.getUsers(),
+      carts: this.apiService.getCarts(),
+      posts: this.apiService.getPosts(),
+    })
+      .pipe(
+        tap((response) => {
+          console.log('Dashboard API Response:', response);
+        }),
+        catchError((error) => {
+          console.log('Dashboard API Error:', error);
+          return of(null);
+        }),
+        finalize(() => {
+          this.loading = false;
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (response) => {
+          if (!response) {
+            return;
+          }
+          this.productCount = response.products.total;
+          this.userCount = response.users.total;
+          this.cartCount = response.carts.total;
+          this.postCount = response.posts.total;
+        },
+      });
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

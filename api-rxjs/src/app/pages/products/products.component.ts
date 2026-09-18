@@ -9,6 +9,8 @@ import {
   catchError,
   finalize,
   takeUntil,
+  debounceTime,
+  distinctUntilChanged,
 } from 'rxjs/operators';
 
 @Component({
@@ -19,111 +21,116 @@ import {
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  // Products
   products: Product[] = [];
-
-  // Loading
+  searchText = '';
+  private searchSubject = new Subject<string>();
   loading = false;
-
-  // Pagination
   currentPage = 1;
-  pageSize = 10;
+  pageSize = 8;
   totalProducts = 0;
   totalPages = 0;
 
-  // Page change trigger
   private pageSubject = new Subject<number>();
-
-  // Destroy subscription
   private destroy$ = new Subject<void>();
-
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.pageSubject
+    this.searchSubject
       .pipe(
-        //  Loading start
+        debounceTime(500),
+        distinctUntilChanged(),
         tap(() => {
+          this.currentPage = 1;
           this.loading = true;
         }),
-
-        //  Page change hone par API call
-        switchMap((page) => {
-          // Skip calculate
-          const skip = (page - 1) * this.pageSize;
-
-          return this.apiService.getProducts(this.pageSize, skip).pipe(
-            //  Response process
+        switchMap((search) => {
+          return this.apiService.getProducts(100, 0).pipe(
             map((response) => {
-              // Total products
-              this.totalProducts = response.total;
-
-              // Total pages
-              this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
-
-              // Products return
-              return response.products;
+              let data = response.products;
+              const value = search.toLowerCase().trim();
+              if (value !== '') {
+                data = data.filter((product: Product) => {
+                  return (
+                    product.title.toLowerCase().includes(value) ||
+                    product.category.toLowerCase().includes(value) ||
+                    product.description.toLowerCase().includes(value) ||
+                    product.id.toString().includes(value)
+                  );
+                });
+              }
+              return data;
             }),
-
-            //  Error handling
             catchError((error) => {
-              console.log('Products API Error:', error);
-
-              this.products = [];
-
+              console.log('Products Search API Error:', error);
               return of([] as Product[]);
             }),
-
-            //  Loading false
             finalize(() => {
               this.loading = false;
             }),
           );
         }),
-
-        //  Component destroy
         takeUntil(this.destroy$),
       )
-
-      //  Subscribe
+      .subscribe({
+        next: (products) => {
+          this.products = products;
+          this.totalProducts = products.length;
+          this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
+        },
+      });
+    this.pageSubject
+      .pipe(
+        tap(() => {
+          this.loading = true;
+        }),
+        switchMap((page) => {
+          const skip = (page - 1) * this.pageSize;
+          return this.apiService.getProducts(this.pageSize, skip).pipe(
+            map((response) => {
+              this.totalProducts = response.total;
+              this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
+              return response.products;
+            }),
+            catchError((error) => {
+              console.log('Products API Error:', error);
+              return of([] as Product[]);
+            }),
+            finalize(() => {
+              this.loading = false;
+            }),
+          );
+        }),
+        takeUntil(this.destroy$),
+      )
       .subscribe({
         next: (products) => {
           this.products = products;
         },
       });
-
-    // First page load
     this.pageSubject.next(1);
   }
-  // Change Page
+  searchProducts(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.searchText = input.value;
+    this.searchSubject.next(this.searchText);
+  }
   changePage(page: number): void {
-    // Invalid page
     if (page < 1 || page > this.totalPages) {
       return;
     }
-
-    // Current page update
     this.currentPage = page;
-
-    // API trigger
     this.pageSubject.next(page);
   }
-
-  // Previous Page
   previousPage(): void {
     if (this.currentPage > 1) {
       this.changePage(this.currentPage - 1);
     }
   }
-
-  // Next Page
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.changePage(this.currentPage + 1);
     }
   }
-
-  // Destroy
   ngOnDestroy(): void {
     this.destroy$.next();
 

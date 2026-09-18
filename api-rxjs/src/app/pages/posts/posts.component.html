@@ -1,53 +1,78 @@
 <h1>Posts</h1>
-
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Search posts by title, body or ID..."
+    [value]="searchText"
+    (input)="searchPosts($event)"
+  />
+</div>
 @if (loading) {
-  <h3>Loading Posts...</h3>
+  <h3 class="loading">Loading Posts...</h3>
 } @else {
-  <div class="post-grid">
-    @for (post of posts; track post.id) {
-      <div class="post-card">
-        <span class="post-id"> Post #{{ post.id }} </span>
-
-        <h2>
-          {{ post.title }}
-        </h2>
-
-        <p class="body">
-          {{ post.body }}
-        </p>
-
-        <!-- Tags -->
-
-        <div class="tags">
-          @for (tag of post.tags; track tag) {
-            <span> #{{ tag }} </span>
-          }
-        </div>
-
-        <!-- Reactions -->
-
-        <div class="reactions">
-          <span>
-            👍
-            {{ post.reactions.likes }}
-          </span>
-
-          <span>
-            👎
-            {{ post.reactions.dislikes }}
-          </span>
-
-          <span>
-            👁
+  @if (posts.length === 0) {
+    <h3 class="no-data">No Posts Found</h3>
+  } @else {
+    <div class="post-grid">
+      @for (post of posts; track post.id) {
+        <div class="post-card">
+          <h2>
+            {{ post.title }}
+          </h2>
+          <p>
+            {{ post.body }}
+          </p>
+          <p>
+            <b>Post ID:</b>
+            {{ post.id }}
+          </p>
+          <p>
+            <b>User ID:</b>
+            {{ post.userId }}
+          </p>
+          <p>
+            <b>Views:</b>
             {{ post.views }}
-          </span>
+          </p>
+          <p>
+            <b>Likes:</b>
+            {{ post.reactions.likes }}
+          </p>
+          <p>
+            <b>Dislikes:</b>
+            {{ post.reactions.dislikes }}
+          </p>
         </div>
+      }
+    </div>
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
 
-        <div class="user-id">
-          User ID:
-          {{ post.userId }}
-        </div>
-      </div>
-    }
-  </div>
+      @for (page of [].constructor(totalPages); track $index) {
+        <button
+          (click)="changePage($index + 1)"
+          [class.active]="currentPage === $index + 1"
+        >
+          {{ $index + 1 }}
+        </button>
+      }
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+    <div class="page-info">
+      <span>
+        Page
+        {{ currentPage }}
+        of
+        {{ totalPages }}
+      </span>
+      <span>
+        Total Posts:
+        {{ totalPosts }}
+      </span>
+    </div>
+  }
 }

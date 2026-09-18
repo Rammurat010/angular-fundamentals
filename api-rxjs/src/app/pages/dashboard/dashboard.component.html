@@ -1,48 +1,35 @@
 <h1>Dashboard</h1>
-
 <p>Angular API Dashboard</p>
-
 @if (loading) {
   <h3>Loading...</h3>
 } @else {
   <div class="cards">
     <div class="card">
       <h2>Products</h2>
-
       <h1>
         {{ productCount }}
       </h1>
-
       <a routerLink="/products"> View Products </a>
     </div>
-
     <div class="card">
       <h2>Users</h2>
-
       <h1>
         {{ userCount }}
       </h1>
-
       <a routerLink="/users"> View Users </a>
     </div>
-
     <div class="card">
       <h2>Carts</h2>
-
       <h1>
         {{ cartCount }}
       </h1>
-
       <a routerLink="/carts"> View Carts </a>
     </div>
-
     <div class="card">
       <h2>Posts</h2>
-
       <h1>
         {{ postCount }}
       </h1>
-
       <a routerLink="/posts"> View Posts </a>
     </div>
   </div>

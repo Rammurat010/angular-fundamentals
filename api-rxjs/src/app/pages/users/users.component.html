@@ -1,8 +1,19 @@
 <h1>Users</h1>
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Search by name, email, phone or ID..."
+    [value]="searchText"
+    (input)="searchUsers($event)"
+  />
+</div>
+
 @if (loading) {
-  <h3>Loading Users...</h3>
+  <h3 class="loading">Loading Users...</h3>
 } @else {
-  <div class="table-container">
+  @if (users.length === 0) {
+    <h3 class="no-data">No Users Found</h3>
+  } @else {
     <table>
       <thead>
         <tr>
@@ -13,10 +24,8 @@
           <th>Phone</th>
           <th>Age</th>
           <th>Gender</th>
-          <th>Company</th>
         </tr>
       </thead>
-
       <tbody>
         @for (user of users; track user.id) {
           <tr>
@@ -24,7 +33,7 @@
               {{ user.id }}
             </td>
             <td>
-              <img [src]="user.image" width="50" />
+              <img [src]="user.image" [alt]="user.firstName" />
             </td>
             <td>
               {{ user.firstName }}
@@ -42,12 +51,37 @@
             <td>
               {{ user.gender }}
             </td>
-            <td>
-              {{ user.company.name }}
-            </td>
           </tr>
         }
       </tbody>
     </table>
-  </div>
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+      @for (page of [].constructor(totalPages); track $index) {
+        <button
+          (click)="changePage($index + 1)"
+          [class.active]="currentPage === $index + 1"
+        >
+          {{ $index + 1 }}
+        </button>
+      }
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+    <div class="page-info">
+      <span>
+        Page
+        {{ currentPage }}
+        of
+        {{ totalPages }}
+      </span>
+      <span>
+        Total Users:
+        {{ totalUsers }}
+      </span>
+    </div>
+  }
 }

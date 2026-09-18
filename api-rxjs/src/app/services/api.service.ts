@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { ProductResponse } from '../models/product';
 import { UserResponse } from '../models/user';
 import { CartResponse } from '../models/cart';
 import { PostResponse } from '../models/post';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +16,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Products
   getProducts(
     limit: number = 30,
     skip: number = 0,
@@ -28,18 +25,21 @@ export class ApiService {
     );
   }
 
-  // Users
-  getUsers(): Observable<UserResponse> {
-    return this.http.get<UserResponse>(this.userUrl);
+  getUsers(limit: number = 10, skip: number = 0): Observable<UserResponse> {
+    return this.http.get<UserResponse>(
+      `${this.userUrl}?limit=${limit}&skip=${skip}`,
+    );
   }
 
-  // Carts
-  getCarts(): Observable<CartResponse> {
-    return this.http.get<CartResponse>(this.cartUrl);
+  getCarts(limit: number = 10, skip: number = 0): Observable<CartResponse> {
+    return this.http.get<CartResponse>(
+      `${this.cartUrl}?limit=${limit}&skip=${skip}`,
+    );
   }
 
-  // Posts
-  getPosts(): Observable<PostResponse> {
-    return this.http.get<PostResponse>(this.postUrl);
+  getPosts(limit: number = 10, skip: number = 0): Observable<PostResponse> {
+    return this.http.get<PostResponse>(
+      `${this.postUrl}?limit=${limit}&skip=${skip}`,
+    );
   }
 }

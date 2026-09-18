@@ -1,31 +1,69 @@
 <h1>Carts</h1>
-
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Search by Cart ID or User ID..."
+    [value]="searchText"
+    (input)="searchCarts($event)"
+  />
+</div>
 @if (loading) {
-  <h3>Loading Carts...</h3>
+  <h3 class="loading">Loading Carts...</h3>
 } @else {
-  <div class="cart-grid">
-    @for (cart of carts; track cart.id) {
-      <div class="cart-card">
-        <h2>Cart #{{ cart.id }}</h2>
-
-        <p>User ID: {{ cart.userId }}</p>
-        <p>
-          Total Products:
-          {{ cart.totalProducts }}
-        </p>
-
-        <p>
-          Total Quantity:
-          {{ cart.totalQuantity }}
-        </p>
-
-        <h3>Total: ${{ cart.total }}</h3>
-
-        <p>
-          Discount:
-          {{ cart.discountedTotal }}
-        </p>
-      </div>
-    }
-  </div>
+  @if (carts.length === 0) {
+    <h3 class="no-data">No Carts Found</h3>
+  } @else {
+    <div class="cart-grid">
+      @for (cart of carts; track cart.id) {
+        <div class="cart-card">
+          <h2>Cart #{{ cart.id }}</h2>
+          <p>
+            <b>User ID:</b>
+            {{ cart.userId }}
+          </p>
+          <p>
+            <b>Total Products:</b>
+            {{ cart.totalProducts }}
+          </p>
+          <p>
+            <b>Total Quantity:</b>
+            {{ cart.totalQuantity }}
+          </p>
+          <h3>Total: ${{ cart.total }}</h3>
+          <p>
+            <b>Discount:</b>
+            ${{ cart.discountedTotal }}
+          </p>
+        </div>
+      }
+    </div>
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+      @for (page of [].constructor(totalPages); track $index) {
+        <button
+          (click)="changePage($index + 1)"
+          [class.active]="currentPage === $index + 1"
+        >
+          {{ $index + 1 }}
+        </button>
+      }
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+    <div class="page-info">
+      <span>
+        Page
+        {{ currentPage }}
+        of
+        {{ totalPages }}
+      </span>
+      <span>
+        Total Carts:
+        {{ totalCarts }}
+      </span>
+    </div>
+  }
 }
