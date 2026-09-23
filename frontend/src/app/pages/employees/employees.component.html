@@ -1,0 +1,83 @@
+<div class="employees-page">
+  <div class="page-header">
+    <div>
+      <h1>Employees</h1>
+      <p>Manage all employees</p>
+    </div>
+
+    <a routerLink="/employees/add" class="add-btn"> + Add Employee </a>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading employees...</div>
+  } @else if (employees.length === 0) {
+    <div class="empty">No employees found.</div>
+  } @else {
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (employee of employees; track employee.id) {
+            <tr>
+              <td>{{ employee.id }}</td>
+
+              <td>
+                <strong>{{ employee.name }}</strong>
+              </td>
+
+              <td>{{ employee.email }}</td>
+
+              <td>{{ employee.phone }}</td>
+
+              <td>{{ employee.department }}</td>
+
+              <td>₹{{ employee.salary }}</td>
+
+              <td>
+                <span
+                  class="status"
+                  [class.active]="employee.status === 'Active'"
+                  [class.inactive]="employee.status !== 'Active'"
+                >
+                  {{ employee.status }}
+                </span>
+              </td>
+
+              <td class="actions">
+                <a [routerLink]="['/employees', employee.id]" class="view-btn">
+                  View
+                </a>
+
+                <a
+                  [routerLink]="['/employees/edit', employee.id]"
+                  class="edit-btn"
+                >
+                  Edit
+                </a>
+
+                <button
+                  class="delete-btn"
+                  (click)="deleteEmployee(employee.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

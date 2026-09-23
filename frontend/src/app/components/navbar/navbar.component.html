@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="logo">Employee Management</div>
+
+  <div class="nav-links">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Dashboard
+    </a>
+
+    <a
+      routerLink="/employees"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Employees
+    </a>
+
+    <a
+      routerLink="/employees/add"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Add Employee
+    </a>
+  </div>
+</nav>

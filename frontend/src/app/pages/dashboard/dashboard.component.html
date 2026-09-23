@@ -1,0 +1,36 @@
+<div class="dashboard">
+  <div class="page-header">
+    <div>
+      <h1>Dashboard</h1>
+      <p>Employee Management System</p>
+    </div>
+
+    <a routerLink="/employees/add" class="add-btn"> + Add Employee </a>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-title">Total Employees</div>
+
+      <div class="card-number">
+        {{ totalEmployees }}
+      </div>
+    </div>
+
+    <div class="card active-card">
+      <div class="card-title">Active Employees</div>
+
+      <div class="card-number">
+        {{ activeEmployees }}
+      </div>
+    </div>
+
+    <div class="card inactive-card">
+      <div class="card-title">Inactive Employees</div>
+
+      <div class="card-number">
+        {{ inactiveEmployees }}
+      </div>
+    </div>
+  </div>
+</div>
