@@ -1,4 +1,6 @@
 <div class="employees-page">
+  <!-- Header -->
+
   <div class="page-header">
     <div>
       <h1>Employees</h1>
@@ -8,40 +10,117 @@
     <a routerLink="/employees/add" class="add-btn"> + Add Employee </a>
   </div>
 
+  <!-- Search + Filters -->
+
+  <div class="filter-box">
+    <!-- Search -->
+
+    <div class="search-box">
+      <label>Search Employee</label>
+
+      <input
+        type="text"
+        placeholder="Search by name, email or phone..."
+        (input)="searchEmployee($event)"
+      />
+    </div>
+
+    <!-- Department -->
+
+    <div class="filter-item">
+      <label>Department</label>
+
+      <select (change)="filterDepartment($event)">
+        <option value="">All Departments</option>
+
+        <option value="IT">IT</option>
+
+        <option value="HR">HR</option>
+
+        <option value="Finance">Finance</option>
+
+        <option value="Sales">Sales</option>
+
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+
+    <!-- Status -->
+
+    <div class="filter-item">
+      <label>Status</label>
+
+      <select (change)="filterStatus($event)">
+        <option value="">All Status</option>
+
+        <option value="Active">Active</option>
+
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Loading -->
+
   @if (loading) {
     <div class="loading">Loading employees...</div>
-  } @else if (employees.length === 0) {
+  }
+
+  <!-- Empty -->
+
+  @else if (paginatedEmployees.length === 0) {
     <div class="empty">No employees found.</div>
-  } @else {
+  }
+
+  <!-- Table -->
+
+  @else {
     <div class="table-container">
       <table>
         <thead>
           <tr>
             <th>ID</th>
+
             <th>Name</th>
+
             <th>Email</th>
+
             <th>Phone</th>
+
             <th>Department</th>
+
             <th>Salary</th>
+
             <th>Status</th>
+
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          @for (employee of employees; track employee.id) {
+          @for (employee of paginatedEmployees; track employee.id) {
             <tr>
-              <td>{{ employee.id }}</td>
-
               <td>
-                <strong>{{ employee.name }}</strong>
+                {{ employee.id }}
               </td>
 
-              <td>{{ employee.email }}</td>
+              <td>
+                <strong>
+                  {{ employee.name }}
+                </strong>
+              </td>
 
-              <td>{{ employee.phone }}</td>
+              <td>
+                {{ employee.email }}
+              </td>
 
-              <td>{{ employee.department }}</td>
+              <td>
+                {{ employee.phone }}
+              </td>
+
+              <td>
+                {{ employee.department }}
+              </td>
 
               <td>₹{{ employee.salary }}</td>
 
@@ -78,6 +157,38 @@
           }
         </tbody>
       </table>
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+
+      @for (page of pages; track page) {
+        <button
+          class="page-number"
+          [class.current]="currentPage === page"
+          (click)="goToPage(page)"
+        >
+          {{ page }}
+        </button>
+      }
+
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+
+    <div class="page-info">
+      Page {{ currentPage }}
+      of
+      {{ totalPages }}
+
+      | Total:
+      {{ filteredEmployees.length }}
+      employees
     </div>
   }
 </div>
