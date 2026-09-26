@@ -2,35 +2,85 @@
   <div class="page-header">
     <div>
       <h1>Dashboard</h1>
-      <p>Employee Management System</p>
+      <p>Employee Management Overview</p>
     </div>
 
     <a routerLink="/employees/add" class="add-btn"> + Add Employee </a>
   </div>
 
-  <div class="cards">
-    <div class="card">
-      <div class="card-title">Total Employees</div>
+  @if (loading) {
+    <div class="loading">Loading dashboard...</div>
 
-      <div class="card-number">
-        {{ totalEmployees }}
+  } @else if (errorMessage) {
+    <div class="error-box">
+      <div>
+        {{ errorMessage }}
+      </div>
+
+      <button (click)="retry()">Retry</button>
+    </div>
+
+  } @else {
+    <div class="cards">
+      <!-- Total -->
+
+      <div class="card">
+        <div class="card-title">Total Employees</div>
+
+        <div class="card-number">
+          {{ totalEmployees }}
+        </div>
+      </div>
+
+      <!-- Active -->
+
+      <div class="card active-card">
+        <div class="card-title">Active Employees</div>
+
+        <div class="card-number">
+          {{ activeEmployees }}
+        </div>
+      </div>
+
+      <!-- Inactive -->
+
+      <div class="card inactive-card">
+        <div class="card-title">Inactive Employees</div>
+
+        <div class="card-number">
+          {{ inactiveEmployees }}
+        </div>
+      </div>
+
+      <!-- Departments -->
+
+      <div class="card department-card">
+        <div class="card-title">Departments</div>
+
+        <div class="card-number">
+          {{ totalDepartments }}
+        </div>
       </div>
     </div>
 
-    <div class="card active-card">
-      <div class="card-title">Active Employees</div>
+    <!-- Quick Actions -->
 
-      <div class="card-number">
-        {{ activeEmployees }}
+    <div class="quick-section">
+      <h2>Quick Actions</h2>
+
+      <div class="quick-actions">
+        <a routerLink="/employees" class="quick-card">
+          <strong> View Employees </strong>
+
+          <span> Manage all employees </span>
+        </a>
+
+        <a routerLink="/employees/add" class="quick-card">
+          <strong> Add Employee </strong>
+
+          <span> Create a new employee </span>
+        </a>
       </div>
     </div>
-
-    <div class="card inactive-card">
-      <div class="card-title">Inactive Employees</div>
-
-      <div class="card-number">
-        {{ inactiveEmployees }}
-      </div>
-    </div>
-  </div>
+  }
 </div>

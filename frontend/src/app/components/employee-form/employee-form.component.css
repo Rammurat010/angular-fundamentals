@@ -108,3 +108,53 @@
   background: #2563eb;
   color: white;
 }
+
+/* Error message */
+
+.error-message {
+  background: #fee2e2;
+
+  color: #991b1b;
+
+  padding: 12px 15px;
+
+  border-radius: 6px;
+
+  margin-bottom: 20px;
+
+  border-left: 4px solid #dc2626;
+}
+
+/* Validation */
+
+.validation-error {
+  color: #dc2626;
+
+  font-size: 12px;
+
+  margin-top: 2px;
+}
+
+/* Invalid input */
+
+.form-group input.ng-invalid.ng-touched,
+.form-group select.ng-invalid.ng-touched {
+  border-color: #dc2626;
+
+  background: #fff7f7;
+}
+
+/* Valid input */
+
+.form-group input.ng-valid.ng-touched,
+.form-group select.ng-valid.ng-touched {
+  border-color: #16a34a;
+}
+
+/* Disabled button */
+
+.submit-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
