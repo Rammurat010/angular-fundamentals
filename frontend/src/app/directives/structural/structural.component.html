@@ -1,0 +1,19 @@
+<p>structural works!</p>
+@if (data) {
+  <h1>data here</h1>
+}
+@if (!data) {
+  <h1>no data here</h1>
+}
+
+@if (valueData == 5) {
+  <h1>yes here</h1>
+} @else {
+  <h1>no here</h1>
+}
+@for (data of datalist; track data) {
+  <p>{{ data }}</p>
+}
+@for (data of dataString; track data) {
+  {{ data }}
+}
