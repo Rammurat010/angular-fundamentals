@@ -1,0 +1,17 @@
+<h2>Parent Component</h2>
+
+<app-child-data (data)="Show_value($event)"> </app-child-data>
+
+<hr />
+
+<h3>String received from Child:</h3>
+
+<p>{{ parentData }}</p>
+
+<hr />
+
+<h3>Array received from Child:</h3>
+
+@for (user of users; track user) {
+  <p>{{ user }}</p>
+}
