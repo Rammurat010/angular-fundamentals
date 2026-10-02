@@ -14,6 +14,12 @@ import { ChildDataComponent } from './data/tranfer/child-data/child-data.compone
 import { NgOnInitComponent } from './hook/onInit/ng-on-init/ng-on-init.component';
 import { NgDoCheckComponent } from './hook/doCheck/ng-do-check/ng-do-check.component';
 import { NgDestroyComponent } from './hook/destroy/ng-destroy/ng-destroy.component';
+import { OnChangeChildComponent } from './hook/onChange/on-change-child/on-change-child.component';
+import { NoChangeParentComponent } from './hook/onChange/no-change-parent/no-change-parent.component';
+import { NgAfterContentCheckedParentComponent } from './hook/AfterContentChecked/ng-after-content-checked-parent/ng-after-content-checked-parent.component';
+import { NgAfterContentCheckedChildComponent } from './hook/AfterContentChecked/ng-after-content-checked-child/ng-after-content-checked-child.component';
+import { NgAfterViewInitComponent } from './hook/afterViewInit/ng-after-view-init/ng-after-view-init.component';
+import { NgAfterViewCheckedComponent } from './hook/afterViewChecked/ng-after-view-checked/ng-after-view-checked.component';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +40,12 @@ import { NgDestroyComponent } from './hook/destroy/ng-destroy/ng-destroy.compone
     NgOnInitComponent,
     NgDoCheckComponent,
     NgDestroyComponent,
+    OnChangeChildComponent,
+    NoChangeParentComponent,
+    NgAfterContentCheckedParentComponent,
+    NgAfterContentCheckedChildComponent,
+    NgAfterViewInitComponent,
+    NgAfterViewCheckedComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
