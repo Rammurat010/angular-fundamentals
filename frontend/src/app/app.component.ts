@@ -20,6 +20,11 @@ import { NgAfterContentCheckedParentComponent } from './hook/AfterContentChecked
 import { NgAfterContentCheckedChildComponent } from './hook/AfterContentChecked/ng-after-content-checked-child/ng-after-content-checked-child.component';
 import { NgAfterViewInitComponent } from './hook/afterViewInit/ng-after-view-init/ng-after-view-init.component';
 import { NgAfterViewCheckedComponent } from './hook/afterViewChecked/ng-after-view-checked/ng-after-view-checked.component';
+import { ServiceComponent } from './service/service/service.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +51,11 @@ import { NgAfterViewCheckedComponent } from './hook/afterViewChecked/ng-after-vi
     NgAfterContentCheckedChildComponent,
     NgAfterViewInitComponent,
     NgAfterViewCheckedComponent,
+    ServiceComponent,
+    AboutComponent,
+    ContactComponent,
+    HomeComponent,
+    ProductsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './ng-after-view-checked.component.html',
-  styleUrl: './ng-after-view-checked.component.css'
+  styleUrl: './ng-after-view-checked.component.css',
 })
-export class NgAfterViewCheckedComponent {
-
-}
+export class NgAfterViewCheckedComponent {}
