@@ -25,6 +25,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -56,6 +57,7 @@ import { ProductsComponent } from './pages/products/products.component';
     ContactComponent,
     HomeComponent,
     ProductsComponent,
+    NavbarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

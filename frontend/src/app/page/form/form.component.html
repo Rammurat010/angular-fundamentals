@@ -1,0 +1,137 @@
+<h2>Student Registration Form</h2>
+
+<form #formValue="ngForm" (ngSubmit)="FormData(formValue)">
+  <!-- Name -->
+  <label>Name:</label>
+  <input
+    type="text"
+    name="name"
+    placeholder="Enter your name"
+    [(ngModel)]="name"
+    required
+    #nameField="ngModel"
+  />
+
+  @if (nameField.invalid && nameField.touched) {
+    <small>Name is required</small>
+  }
+
+  <br /><br />
+
+  <!-- Email -->
+  <label>Email:</label>
+  <input
+    type="email"
+    name="email"
+    placeholder="Enter your email"
+    [(ngModel)]="email"
+    required
+    email
+    #emailField="ngModel"
+  />
+
+  @if (emailField.invalid && emailField.touched) {
+    <small>Enter a valid email</small>
+  }
+
+  <br /><br />
+
+  <!-- Phone -->
+  <label>Phone:</label>
+  <input
+    type="tel"
+    name="phone"
+    placeholder="Enter phone number"
+    [(ngModel)]="phone"
+    required
+  />
+
+  <br /><br />
+
+  <!-- Age -->
+  <label>Age:</label>
+  <input
+    type="number"
+    name="age"
+    placeholder="Enter your age"
+    [(ngModel)]="age"
+    required
+  />
+
+  <br /><br />
+
+  <!-- Gender -->
+  <label>Gender:</label>
+
+  <input type="radio" name="gender" value="Male" [(ngModel)]="gender" />
+  Male
+
+  <input type="radio" name="gender" value="Female" [(ngModel)]="gender" />
+  Female
+
+  <br /><br />
+
+  <!-- Course -->
+  <label>Course:</label>
+
+  <select name="course" [(ngModel)]="course" required>
+    <option value="">Select Course</option>
+    <option value="Angular">Angular</option>
+    <option value="React">React</option>
+    <option value="Node">Node.js</option>
+    <option value="JavaScript">JavaScript</option>
+  </select>
+
+  <br /><br />
+
+  <!-- City -->
+  <label>City:</label>
+
+  <select name="city" [(ngModel)]="city">
+    <option value="">Select City</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Noida">Noida</option>
+    <option value="Lucknow">Lucknow</option>
+    <option value="Agra">Agra</option>
+  </select>
+
+  <br /><br />
+
+  <!-- Skills -->
+  <label>Skills:</label>
+
+  <input type="checkbox" name="html" [(ngModel)]="html" />
+  HTML
+
+  <input type="checkbox" name="css" [(ngModel)]="css" />
+  CSS
+
+  <input type="checkbox" name="javascript" [(ngModel)]="javascript" />
+  JavaScript
+
+  <input type="checkbox" name="angular" [(ngModel)]="angular" />
+  Angular
+
+  <br /><br />
+
+  <!-- Address -->
+  <label>Address:</label>
+
+  <textarea
+    name="address"
+    rows="4"
+    cols="40"
+    placeholder="Enter your address"
+    [(ngModel)]="address"
+  ></textarea>
+
+  <br /><br />
+
+  <!-- Submit -->
+  <button type="submit" [disabled]="formValue.invalid">Submit</button>
+</form>
+
+<hr />
+
+<h3>Form Data:</h3>
+<pre>{{ formValue.value | json }}</pre>
