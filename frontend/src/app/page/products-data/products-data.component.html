@@ -1,0 +1,128 @@
+<div>
+  <h1>Product CRUD</h1>
+
+  <!-- Search -->
+  <div>
+    <input
+      type="text"
+      placeholder="Search product..."
+      [(ngModel)]="searchText"
+      (keyup.enter)="search()"
+    />
+
+    <button (click)="search()">Search</button>
+
+    <button (click)="searchText = ''; currentPage = 1; getProducts()">
+      All Products
+    </button>
+  </div>
+
+  <!-- Add / Update Form -->
+  <div>
+    @if (isEditMode) {
+      <h2>Update Product</h2>
+    } @else {
+      <h2>Add Product</h2>
+    }
+
+    <label>Product Title</label>
+
+    <input
+      type="text"
+      placeholder="Enter product title"
+      [(ngModel)]="product.title"
+    />
+
+    <br /><br />
+
+    <label>Price</label>
+
+    <input
+      type="number"
+      placeholder="Enter price"
+      [(ngModel)]="product.price"
+    />
+
+    <br /><br />
+
+    <label>Description</label>
+
+    <textarea placeholder="Enter description" [(ngModel)]="product.description">
+    </textarea>
+
+    <br /><br />
+
+    @if (isEditMode) {
+      <button (click)="updateProduct()">Update Product</button>
+
+      <button (click)="clearForm()">Cancel</button>
+    } @else {
+      <button (click)="addProduct()">Add Product</button>
+    }
+  </div>
+
+  <!-- Product List -->
+
+  <h2>Product List</h2>
+
+  <p>
+    Total Products:
+    <strong>{{ totalProducts }}</strong>
+  </p>
+
+  <div>
+    @for (product of products; track product.id) {
+      <div>
+        <h3>{{ product.title }}</h3>
+
+        <p>
+          <strong>ID:</strong>
+          {{ product.id }}
+        </p>
+
+        <p>
+          <strong>Price:</strong>
+          ${{ product.price }}
+        </p>
+
+        <p>
+          <strong>Description:</strong>
+          {{ product.description }}
+        </p>
+
+        <button (click)="editProduct(product)">Edit</button>
+
+        <button (click)="deleteProduct(product.id)">Delete</button>
+
+        <hr />
+      </div>
+    } @empty {
+      <p>No products found.</p>
+    }
+  </div>
+
+  <!-- Pagination -->
+
+  <div>
+    <button [disabled]="currentPage === 1" (click)="previousPage()">
+      Previous
+    </button>
+
+    @for (page of getPages(); track page) {
+      <button [disabled]="currentPage === page" (click)="goToPage(page)">
+        {{ page }}
+      </button>
+    }
+
+    <button [disabled]="currentPage === totalPages" (click)="nextPage()">
+      Next
+    </button>
+  </div>
+
+  <p>
+    Page
+    <strong>{{ currentPage }}</strong>
+    of
+    <strong>{{ totalPages }}</strong>
+  </p>
+</div>

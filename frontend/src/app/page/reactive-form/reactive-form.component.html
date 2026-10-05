@@ -1,1 +1,66 @@
-<p>reactive-form works!</p>
+<h2>Registration Form</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+
+  <br /><br />
+
+  <label>Email</label>
+  <input type="email" formControlName="email" />
+
+  <br /><br />
+
+  <label>Age</label>
+  <input type="number" formControlName="age" />
+
+  <br /><br />
+
+  <label>Password</label>
+  <input type="password" formControlName="password" />
+
+  <br /><br />
+
+  <label>Gender</label>
+
+  <input type="radio" value="Male" formControlName="gender" />
+  Male
+
+  <input type="radio" value="Female" formControlName="gender" />
+  Female
+
+  <br /><br />
+
+  <label>City</label>
+
+  <select formControlName="city">
+    <option value="">Select City</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Noida">Noida</option>
+    <option value="Lucknow">Lucknow</option>
+  </select>
+
+  <br /><br />
+
+  <label>Skills</label>
+  <input type="text" formControlName="skills" />
+
+  <br /><br />
+
+  <label>Date of Birth</label>
+  <input type="date" formControlName="date" />
+
+  <br /><br />
+
+  <label>Address</label>
+  <textarea formControlName="address"></textarea>
+
+  <br /><br />
+
+  <input type="checkbox" formControlName="terms" />
+  I accept terms and conditions
+
+  <br /><br />
+
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>

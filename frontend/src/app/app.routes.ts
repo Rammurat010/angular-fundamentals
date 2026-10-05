@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { FormComponent } from './page/form/form.component';
 import { ReactiveFormComponent } from './page/reactive-form/reactive-form.component';
+import { ProductsDataComponent } from './page/products-data/products-data.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: 'reactive',
     component: ReactiveFormComponent,
+  },
+
+  {
+    path: 'productsData',
+    component: ProductsDataComponent,
   },
   {
     path: '**',
