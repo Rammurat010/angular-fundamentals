@@ -26,6 +26,11 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { ObservableComponent } from './rxjs/observable/observable.component';
+import { OfComponent } from './rxjs/of/of.component';
+import { FromComponent } from './rxjs/from/from.component';
+import { MapComponent } from './rxjs/map/map.component';
+import { FilterComponent } from './rxjs/filter/filter.component';
 
 @Component({
   selector: 'app-root',
@@ -58,6 +63,11 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     HomeComponent,
     ProductsComponent,
     NavbarComponent,
+    ObservableComponent,
+    OfComponent,
+    FromComponent,
+    MapComponent,
+    FilterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
