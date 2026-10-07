@@ -31,6 +31,15 @@ import { OfComponent } from './rxjs/of/of.component';
 import { FromComponent } from './rxjs/from/from.component';
 import { MapComponent } from './rxjs/map/map.component';
 import { FilterComponent } from './rxjs/filter/filter.component';
+import { TabComponent } from './rxjs/tab/tab.component';
+import { DebounceTimeComponent } from './rxjs/debounce-time/debounce-time.component';
+import { DistinctUntilChangedComponent } from './rxjs/distinct-until-changed/distinct-until-changed.component';
+import { SwitchMapComponent } from './rxjs/switch-map/switch-map.component';
+import { MergeMapComponent } from './rxjs/merge-map/merge-map.component';
+import { ConcatMapComponent } from './rxjs/concat-map/concat-map.component';
+import { ExhaustMapComponent } from './rxjs/exhaust-map/exhaust-map.component';
+import { CatchErrorComponent } from './rxjs/catch-error/catch-error.component';
+import { ForkJoinComponent } from './rxjs/fork-join/fork-join.component';
 
 @Component({
   selector: 'app-root',
@@ -68,6 +77,15 @@ import { FilterComponent } from './rxjs/filter/filter.component';
     FromComponent,
     MapComponent,
     FilterComponent,
+    TabComponent,
+    DebounceTimeComponent,
+    DistinctUntilChangedComponent,
+    SwitchMapComponent,
+    MergeMapComponent,
+    ConcatMapComponent,
+    ExhaustMapComponent,
+    CatchErrorComponent,
+    ForkJoinComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
