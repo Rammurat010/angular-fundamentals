@@ -40,6 +40,11 @@ import { ConcatMapComponent } from './rxjs/concat-map/concat-map.component';
 import { ExhaustMapComponent } from './rxjs/exhaust-map/exhaust-map.component';
 import { CatchErrorComponent } from './rxjs/catch-error/catch-error.component';
 import { ForkJoinComponent } from './rxjs/fork-join/fork-join.component';
+import { SignalComponent } from './signals/signal/signal.component';
+import { AdSignalComponent } from './signals/ad-signal/ad-signal.component';
+import { EffectComponent } from './signals/effect/effect.component';
+import { StateComponent } from './signals/state/state.component';
+import { CounterComponent } from './signals/counter/counter.component';
 
 @Component({
   selector: 'app-root',
@@ -86,6 +91,11 @@ import { ForkJoinComponent } from './rxjs/fork-join/fork-join.component';
     ExhaustMapComponent,
     CatchErrorComponent,
     ForkJoinComponent,
+    SignalComponent,
+    AdSignalComponent,
+    EffectComponent,
+    StateComponent,
+    CounterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
