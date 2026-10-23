@@ -1,0 +1,81 @@
+<div class="table-card">
+  <div class="table-heading">
+    <div>
+      <h2>All Students</h2>
+      <p>Search, edit and manage student records.</p>
+    </div>
+
+    <input
+      type="search"
+      name="search"
+      [(ngModel)]="searchText"
+      placeholder="Search students..."
+      aria-label="Search students"
+    />
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Course</th>
+          <th>Marks</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (student of students; track student.id) {
+          <tr>
+            <td>
+              <div class="student-name">
+                <span class="avatar">
+                  {{ student.name.charAt(0).toUpperCase() }}
+                </span>
+                {{ student.name }}
+              </div>
+            </td>
+
+            <td>{{ student.course }}</td>
+            <td>{{ student.marks }}/100</td>
+
+            <td>
+              <span
+                class="status"
+                [class.inactive]="student.status === 'Inactive'"
+              >
+                {{ student.status }}
+              </span>
+            </td>
+
+            <td class="actions">
+              <button
+                type="button"
+                class="edit-btn"
+                (click)="editStudent(student)"
+              >
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="delete-btn"
+                (click)="deleteStudent(student.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty">No students found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <p class="table-footer">Total matching students: {{ students.length }}</p>
+</div>

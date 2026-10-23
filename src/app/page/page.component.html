@@ -1,0 +1,106 @@
+<div class="dashboard">
+  <header class="topbar">
+    <div>
+      <span class="eyebrow">STUDENT MANAGEMENT SYSTEM</span>
+      <h1>{{ title }}</h1>
+      <p>Welcome! Manage your students from one place.</p>
+    </div>
+
+    <a routerLink="/add-student" class="add-btn"> + Add Student </a>
+  </header>
+
+  <!-- Dashboard Statistics -->
+  <section class="stats">
+    <div class="stat-card total">
+      <span class="stat-label">Total Students</span>
+      <div class="stat-value">{{ totalStudents }}</div>
+      <p>All registered students</p>
+    </div>
+
+    <div class="stat-card active">
+      <span class="stat-label">Active Students</span>
+      <div class="stat-value">{{ activeStudents }}</div>
+      <p>Currently active</p>
+    </div>
+
+    <div class="stat-card inactive">
+      <span class="stat-label">Inactive Students</span>
+      <div class="stat-value">{{ inactiveStudents }}</div>
+      <p>Currently inactive</p>
+    </div>
+
+    <div class="stat-card marks">
+      <span class="stat-label">Average Marks</span>
+      <div class="stat-value">{{ averageMarks | number: "1.1-2" }}%</div>
+      <p>Average student performance</p>
+    </div>
+  </section>
+
+  <!-- Active Percentage -->
+  <section class="percentage-card">
+    <div class="percentage-heading">
+      <div>
+        <h2>Active Student Percentage</h2>
+        <p>Students currently marked as active</p>
+      </div>
+
+      <strong>{{ activePercentage | number: "1.2-2" }}%</strong>
+    </div>
+
+    <div
+      class="progress-track"
+      role="progressbar"
+      aria-label="Active student percentage"
+      [attr.aria-valuenow]="activePercentage"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <div class="progress-fill" [style.width.%]="activePercentage"></div>
+    </div>
+  </section>
+
+  <!-- Original Student Details Cards -->
+  <section class="featured-section">
+    <div class="section-heading">
+      <div>
+        <h2>Student Details</h2>
+        <p>Featured student profiles</p>
+      </div>
+    </div>
+
+    <div class="featured-grid">
+      @for (student of students.slice(0, 2); track student.id) {
+        <div class="student-card">
+          <div class="student-avatar">
+            {{ student.name.charAt(0).toUpperCase() }}
+          </div>
+
+          <div class="student-info">
+            <h3>{{ student.name }}</h3>
+            <p>{{ student.course }}</p>
+
+            <div class="student-bottom">
+              <span
+                class="status"
+                [class.inactive]="student.status === 'Inactive'"
+              >
+                {{ student.status }}
+              </span>
+
+              <span class="student-marks"> {{ student.marks }}/100 </span>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <p>No student details available.</p>
+      }
+    </div>
+  </section>
+
+  <!-- Complete Student Table -->
+  <section class="table-section">
+    <app-student-list />
+  </section>
+
+  <footer>Student Management Dashboard · Angular</footer>
+</div>
