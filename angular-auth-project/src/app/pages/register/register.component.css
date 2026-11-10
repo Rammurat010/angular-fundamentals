@@ -1,0 +1,39 @@
+.auth-box {
+  width: 350px;
+  margin: 50px auto;
+  padding: 30px;
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

@@ -1,0 +1,27 @@
+<nav class="navbar">
+  <div class="logo">Auth System</div>
+
+  <div class="links">
+    <a routerLink="/"> Home </a>
+
+    @if (!authService.isLoggedIn()) {
+      <a routerLink="/login"> Login </a>
+
+      <a routerLink="/register"> Register </a>
+    }
+
+    @if (authService.isLoggedIn()) {
+      @if (authService.getRole() === "admin") {
+        <a routerLink="/admin"> Admin Dashboard </a>
+      }
+
+      @if (authService.getRole() === "user") {
+        <a routerLink="/user"> User Dashboard </a>
+      }
+
+      <span class="welcome"> Hello, {{ authService.getName() }} </span>
+
+      <button (click)="logout()">Logout</button>
+    }
+  </div>
+</nav>
