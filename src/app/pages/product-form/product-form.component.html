@@ -1,0 +1,51 @@
+<h1>{{ productId ? "Edit Product" : "Add Product" }}</h1>
+
+@if (loading && productId !== null) {
+  <p>Loading product...</p>
+} @else {
+  <form #productForm="ngForm" (ngSubmit)="saveProduct()">
+    <label>Product Name</label>
+    <input
+      type="text"
+      name="title"
+      [(ngModel)]="product.title"
+      required
+      #title="ngModel"
+    />
+    @if (title.invalid && title.touched) {
+      <small>Product name required hai.</small>
+    }
+
+    <label>Price</label>
+    <input
+      type="number"
+      name="price"
+      [(ngModel)]="product.price"
+      required
+      min="0.01"
+    />
+
+    <label>Category</label>
+    <input
+      type="text"
+      name="category"
+      [(ngModel)]="product.category"
+      required
+    />
+
+    <label>Description</label>
+    <textarea
+      name="description"
+      [(ngModel)]="product.description"
+      rows="4"
+    ></textarea>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <button type="submit" [disabled]="productForm.invalid || loading">
+      {{ loading ? "Saving..." : productId ? "Update Product" : "Add Product" }}
+    </button>
+  </form>
+}

@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <a class="brand" routerLink="/dashboard">Product Manager</a>
+
+  <div class="nav-links">
+    <a routerLink="/dashboard" routerLinkActive="active"> Dashboard </a>
+
+    <a routerLink="/products" routerLinkActive="active"> Products </a>
+
+    <a
+      routerLink="/products/add"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Add Product
+    </a>
+  </div>
+</nav>

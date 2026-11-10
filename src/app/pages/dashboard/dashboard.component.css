@@ -1,0 +1,17 @@
+.dashboard-card {
+  max-width: 350px;
+  padding: 25px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.dashboard-card h2 {
+  font-size: 36px;
+}
+
+.dashboard-card a {
+  color: #2563eb;
+  text-decoration: none;
+}

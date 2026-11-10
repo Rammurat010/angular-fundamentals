@@ -1,0 +1,18 @@
+<h1>Dashboard</h1>
+<p>Welcome to Product Manager.</p>
+
+<div class="dashboard-card">
+  <h3>Total Products</h3>
+
+  @if (loading) {
+    <p>Loading...</p>
+  } @else {
+    <h2>{{ totalProducts }}</h2>
+  }
+
+  @if (error) {
+    <p>{{ error }}</p>
+  }
+
+  <a routerLink="/products">View Products</a>
+</div>
